@@ -9,19 +9,23 @@ import 'package:prueba/widgets/home/loading_movie_card.dart';
 
 // Models
 import 'package:prueba/models/movie_model.dart';
-import 'package:prueba/models/movie_category_model.dart';
 
 // Blocs
 import 'package:prueba/blocs/home_bloc.dart';
 
 class MovieCategory extends StatefulWidget {
-  final int index;
-  final MovieCategoryModel movieCategory;
+  final HomeBloc homeBloc;
+  final String title;
+  final bool isFirst, loading;
+  final List<MovieModel> movies;
 
   MovieCategory({
     Key key,
-    @required this.index,
-    @required this.movieCategory,
+    this.isFirst = false,
+    @required this.loading,
+    @required this.homeBloc,
+    @required this.title,
+    @required this.movies,
   }) : super(key: key);
 
   @override
@@ -29,21 +33,13 @@ class MovieCategory extends StatefulWidget {
 }
 
 class _MovieCategoryState extends State<MovieCategory> {
-  HomeBloc _homeBloc = HomeBloc();
-
   @override
   void initState() {
     super.initState();
 
-    _homeBloc.fetchMovies(
-      typeMovie: widget.movieCategory.typeMovieCategory,
-    );
-  }
-
-  @override
-  void dispose() {
-    _homeBloc.dispose();
-    super.dispose();
+    // widget.homeBloc.fetchMovies(
+    //   typeMovie: widget.movieCategory.typeMovieCategory,
+    // );
   }
 
   // ====================================================================
@@ -58,7 +54,7 @@ class _MovieCategoryState extends State<MovieCategory> {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Text(
-            widget.movieCategory.name.toUpperCase(),
+            widget.title.toUpperCase(),
             style: Theme.of(context).textTheme.headline5.merge(
                   TextStyle(
                     fontSize: SizeConfig.safeBlockHorizontal * 3.3,
@@ -77,7 +73,11 @@ class _MovieCategoryState extends State<MovieCategory> {
   // ====================================================================
   // Movie List
   // ====================================================================
-  Widget _movieList(List<MovieModel> movieList) {
+  Widget _movieList() {
+    if (widget.loading) {
+      return _loadingMovieList();
+    }
+
     return Expanded(
       child: ListView.builder(
         padding: EdgeInsets.only(
@@ -86,10 +86,10 @@ class _MovieCategoryState extends State<MovieCategory> {
         scrollDirection: Axis.horizontal,
         itemBuilder: (context, index) {
           return MovieCard(
-            movie: movieList[index],
+            movie: widget.movies[index],
           );
         },
-        itemCount: movieList.length,
+        itemCount: widget.movies.length,
       ),
     );
   }
@@ -136,27 +136,29 @@ class _MovieCategoryState extends State<MovieCategory> {
           // Title Category
           _titleCategory(),
 
+          _movieList(),
+
           // Movie List
-          StreamBuilder<List<MovieModel>>(
-            stream: _homeBloc.movieList,
-            builder: (context, movieList) {
-              return StreamBuilder<bool>(
-                initialData: true,
-                stream: _homeBloc.loadingMovieList,
-                builder: (context, loadingMovieList) {
-                  if (loadingMovieList.data) {
-                    return _loadingMovieList();
-                  }
+          // StreamBuilder<List<MovieModel>>(
+          //   stream: widget.homeBloc.movieList,
+          //   builder: (context, movieList) {
+          //     return StreamBuilder<bool>(
+          //       initialData: true,
+          //       stream: widget.homeBloc.loadingMovieList,
+          //       builder: (context, loadingMovieList) {
+          //         if (loadingMovieList.data) {
+          //           return _loadingMovieList();
+          //         }
 
-                  if (!movieList.hasData && movieList.data == null) {
-                    return Container();
-                  }
+          //         if (!movieList.hasData && movieList.data == null) {
+          //           return Container();
+          //         }
 
-                  return _movieList(movieList.data);
-                },
-              );
-            },
-          ),
+          //         return _movieList(movieList.data);
+          //       },
+          //     );
+          //   },
+          // ),
         ],
       ),
     );
@@ -166,7 +168,7 @@ class _MovieCategoryState extends State<MovieCategory> {
   // Validate Border Radius First Category
   // ====================================================================
   BorderRadius _validateRadius() {
-    if (widget.index == 0) {
+    if (widget.isFirst) {
       return BorderRadius.only(
         topLeft: Radius.circular(20),
         topRight: Radius.circular(20),
@@ -180,7 +182,7 @@ class _MovieCategoryState extends State<MovieCategory> {
   // Validate Padding Top First Category
   // ====================================================================
   double _validatePaddingTop() {
-    if (widget.index == 0) {
+    if (widget.isFirst) {
       return SizeConfig.safeBlockVertical * 6;
     }
 

@@ -9,9 +9,10 @@ import 'package:prueba/widgets/home/movie_category.dart';
 
 // Blocs
 import 'package:prueba/blocs/theme_bloc.dart';
+import 'package:prueba/blocs/home_bloc.dart';
 
 // Models
-import 'package:prueba/models/movie_category_model.dart';
+import 'package:prueba/models/movie_model.dart';
 
 class HomeScreen extends StatefulWidget {
   final ThemeBloc themeBloc;
@@ -23,13 +24,92 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  List _movieCategories = List<MovieCategoryModel>();
+  HomeBloc _homeBloc = HomeBloc();
 
   @override
   void initState() {
     super.initState();
 
-    _addMovieCategories();
+    _homeBloc.initState();
+  }
+
+  @override
+  void dispose() {
+    _homeBloc.dispose();
+    super.dispose();
+  }
+
+  // ====================================================================
+  // Recommended Movies
+  // ====================================================================
+  Widget _recommendedMovies() {
+    return StreamBuilder<bool>(
+      stream: _homeBloc.loadingRecommendedMovies,
+      initialData: true,
+      builder: (context, loading) {
+        return StreamBuilder<List<MovieModel>>(
+          stream: _homeBloc.listRecommendedMovies,
+          initialData: [],
+          builder: (context, movieList) {
+            return MovieCategory(
+              isFirst: true,
+              homeBloc: _homeBloc,
+              title: "Recommended For You",
+              loading: loading.data,
+              movies: movieList.data,
+            );
+          },
+        );
+      },
+    );
+  }
+
+  // ====================================================================
+  // Top Rated Movies
+  // ====================================================================
+  Widget _topRatedMovies() {
+    return StreamBuilder<bool>(
+      stream: _homeBloc.loadingTopRatedMovies,
+      initialData: true,
+      builder: (context, loading) {
+        return StreamBuilder<List<MovieModel>>(
+          stream: _homeBloc.listTopRatedMovies,
+          initialData: [],
+          builder: (context, movieList) {
+            return MovieCategory(
+              homeBloc: _homeBloc,
+              title: "Top Rated",
+              loading: loading.data,
+              movies: movieList.data,
+            );
+          },
+        );
+      },
+    );
+  }
+
+  // ====================================================================
+  // Trending Week Movies
+  // ====================================================================
+  Widget _trendingWeekMovies() {
+    return StreamBuilder<bool>(
+      stream: _homeBloc.loadingTrendingMovies,
+      initialData: true,
+      builder: (context, loading) {
+        return StreamBuilder<List<MovieModel>>(
+          stream: _homeBloc.listTrendingMovies,
+          initialData: [],
+          builder: (context, movieList) {
+            return MovieCategory(
+              homeBloc: _homeBloc,
+              title: "Trending - Week",
+              loading: loading.data,
+              movies: movieList.data,
+            );
+          },
+        );
+      },
+    );
   }
 
   // ====================================================================
@@ -50,45 +130,16 @@ class _HomeScreenState extends State<HomeScreen> {
 
               // List Movies
               SliverList(
-                delegate: SliverChildBuilderDelegate(
-                  (context, index) {
-                    return MovieCategory(
-                      index: index,
-                      movieCategory: _movieCategories[index],
-                    );
-                  },
-                  childCount: _movieCategories.length,
-                ),
+                delegate: SliverChildListDelegate([
+                  _recommendedMovies(),
+                  _topRatedMovies(),
+                  _trendingWeekMovies(),
+                ]),
               ),
             ],
           ),
         ),
       ),
     );
-  }
-
-  // ====================================================================
-  // Add Movie Categories
-  // ====================================================================
-  void _addMovieCategories() {
-    _movieCategories.add(MovieCategoryModel(
-      typeMovieCategory: TypeMovieCategory.topRated,
-      name: "Top Rated",
-    ));
-
-    _movieCategories.add(MovieCategoryModel(
-      typeMovieCategory: TypeMovieCategory.trending,
-      name: "Trending",
-    ));
-
-    _movieCategories.add(MovieCategoryModel(
-      typeMovieCategory: TypeMovieCategory.popular,
-      name: "Popular",
-    ));
-
-    _movieCategories.add(MovieCategoryModel(
-      typeMovieCategory: TypeMovieCategory.upcoming,
-      name: "Upcoming",
-    ));
   }
 }

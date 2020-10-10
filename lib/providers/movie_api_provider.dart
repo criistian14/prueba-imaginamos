@@ -25,32 +25,10 @@ class MovieApiProvider {
     };
 
     try {
-      String url;
-
-      // URL Get Movies
-      switch (typeMovie) {
-        case TypeMovieCategory.topRated:
-          url =
-              "${AppConfig.apiURL}/movie/top_rated${AppConfig.paramApiKey}&page=$page&language=en-US";
-          break;
-
-        case TypeMovieCategory.trending:
-          url =
-              "${AppConfig.apiURL}/trending/movie/week${AppConfig.paramApiKey}&page=$page";
-          break;
-
-        case TypeMovieCategory.popular:
-          url =
-              "${AppConfig.apiURL}/movie/popular${AppConfig.paramApiKey}&page=$page&language=en-US";
-          break;
-
-        case TypeMovieCategory.upcoming:
-          url =
-              "${AppConfig.apiURL}/movie/upcoming${AppConfig.paramApiKey}&page=$page&language=en-US";
-          break;
-
-        default:
-      }
+      String url = _urlGetMovies(
+        page: page,
+        typeMovie: typeMovie,
+      );
 
       // Send Request
       var response = await http.get(url);
@@ -85,5 +63,41 @@ class MovieApiProvider {
     }
 
     return returnApi;
+  }
+
+  // ====================================================================
+  // Get Url Movies By Category
+  // ====================================================================
+  String _urlGetMovies({
+    int page,
+    TypeMovieCategory typeMovie,
+  }) {
+    String url;
+
+    switch (typeMovie) {
+      case TypeMovieCategory.topRated:
+        url =
+            "${AppConfig.apiURL}/movie/top_rated${AppConfig.paramApiKey}&page=$page&language=en-US";
+        break;
+
+      case TypeMovieCategory.trending:
+        url =
+            "${AppConfig.apiURL}/trending/movie/week${AppConfig.paramApiKey}&page=$page";
+        break;
+
+      case TypeMovieCategory.popular:
+        url =
+            "${AppConfig.apiURL}/movie/popular${AppConfig.paramApiKey}&page=$page&language=en-US";
+        break;
+
+      case TypeMovieCategory.upcoming:
+        url =
+            "${AppConfig.apiURL}/movie/upcoming${AppConfig.paramApiKey}&page=$page&language=en-US";
+        break;
+
+      default:
+    }
+
+    return url;
   }
 }
