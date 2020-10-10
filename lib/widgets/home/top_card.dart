@@ -1,3 +1,6 @@
+import 'dart:io';
+
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 // Utilities
@@ -46,7 +49,7 @@ class _TopCardHomeState extends State<TopCardHome> {
         decoration: InputDecoration(
           contentPadding: EdgeInsets.zero,
           hintText: "Search",
-          prefixIcon: Icon(Icons.search),
+          prefixIcon: _iconSearch(),
         ),
       ),
     );
@@ -71,11 +74,7 @@ class _TopCardHomeState extends State<TopCardHome> {
                 padding: EdgeInsets.zero,
                 minWidth: 0,
                 materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                child: Icon(
-                  snapshot.data ? Icons.wb_sunny : Icons.nightlight_round,
-                  size: SizeConfig.safeBlockVertical * 4.5,
-                  color: Colors.white,
-                ),
+                child: _iconSwitchDarkMode(snapshot.data),
               ),
             ],
           ),
@@ -116,5 +115,33 @@ class _TopCardHomeState extends State<TopCardHome> {
   // ====================================================================
   void _changeTheme(bool value) {
     widget.themeBloc.changeTheTheme(!value);
+  }
+
+  // ====================================================================
+  // Icon Switch Dark Mode (iOS or Android)
+  // ====================================================================
+  Widget _iconSwitchDarkMode(bool darkMode) {
+    if (Platform.isIOS) {
+      return Icon(
+        darkMode ? CupertinoIcons.sun_max_fill : CupertinoIcons.moon_fill,
+        size: SizeConfig.safeBlockVertical * 4.5,
+        color: Colors.white,
+      );
+    }
+
+    return Icon(
+      darkMode ? Icons.wb_sunny : Icons.nightlight_round,
+      size: SizeConfig.safeBlockVertical * 4.5,
+      color: Colors.white,
+    );
+  }
+
+  // ====================================================================
+  // Icon Search (iOS or Android)
+  // ====================================================================
+  Widget _iconSearch() {
+    if (Platform.isIOS) return Icon(CupertinoIcons.search);
+
+    return Icon(Icons.search);
   }
 }
