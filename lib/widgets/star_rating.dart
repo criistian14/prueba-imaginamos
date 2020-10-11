@@ -24,7 +24,7 @@ class _StarRatingState extends State<StarRating> {
     SizeConfig().init(context);
 
     return Container(
-      width: SizeConfig.safeBlockHorizontal * 23,
+      width: SizeConfig.safeBlockHorizontal * 20,
       height: SizeConfig.safeBlockVertical * 4,
       child: ListView.builder(
         scrollDirection: Axis.horizontal,

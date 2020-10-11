@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:meta/meta.dart';
 
 // Libraries
 import 'package:http/http.dart' as http;
@@ -99,5 +100,46 @@ class MovieApiProvider {
     }
 
     return url;
+  }
+
+  // ====================================================================
+  // Get Movie Details By ID
+  // ====================================================================
+  Future<Map> getMovieDetails({
+    @required int id,
+  }) async {
+    Map returnApi = {
+      "error": false,
+      "messageError": null,
+      "movie": null,
+    };
+
+    try {
+      String url =
+          "${AppConfig.apiURL}/movie/$id${AppConfig.paramApiKey}&language=en-US&append_to_response=credits";
+
+      // Send Request
+      var response = await http.get(url);
+
+      final parsed = jsonDecode(response.body);
+
+      if (response.statusCode == 200) {
+        parsed["cast"] = parsed["credits"]["cast"];
+
+        // Parse movie to object
+        MovieModel _movieTemp = MovieModel.fromJson(parsed);
+        returnApi["movie"] = _movieTemp;
+
+        // Error Handling
+      } else if (response.statusCode == 401 || response.statusCode == 404) {
+        returnApi["error"] = true;
+        returnApi["messageError"] = parsed["status_message"];
+      }
+    } catch (e) {
+      returnApi["messageError"] = "Error With Server";
+      returnApi["error"] = true;
+    }
+
+    return returnApi;
   }
 }

@@ -10,6 +10,9 @@ import 'package:prueba/widgets/star_rating.dart';
 // Models
 import 'package:prueba/models/movie_model.dart';
 
+// Screens
+import 'package:prueba/screens/movie_details_screen.dart';
+
 class MovieCard extends StatefulWidget {
   final MovieModel movie;
 
@@ -65,20 +68,49 @@ class _MovieCardState extends State<MovieCard> {
   Widget build(BuildContext context) {
     SizeConfig().init(context);
 
-    return Container(
-      margin: EdgeInsets.only(
-        right: SizeConfig.safeBlockHorizontal * 7,
+    return GestureDetector(
+      onTap: _openMovieDetails,
+      child: Container(
+        margin: EdgeInsets.only(
+          right: SizeConfig.safeBlockHorizontal * 7,
+        ),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            _thumbnailMovie(),
+            _titleMovie(),
+            StarRating(
+              rating: widget.movie.voteAverage,
+            ),
+          ],
+        ),
       ),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          _thumbnailMovie(),
-          _titleMovie(),
-          StarRating(
-            rating: widget.movie.voteAverage,
-          ),
-        ],
+    );
+  }
+
+  // ====================================================================
+  // Open Movie Details
+  // ====================================================================
+  void _openMovieDetails() {
+    Navigator.of(context).push(
+      PageRouteBuilder(
+        transitionDuration: Duration(milliseconds: 400),
+        pageBuilder: (context, animation, secondaryAnimation) =>
+            MovieDetailsScreen(
+          movie: widget.movie,
+        ),
+        transitionsBuilder: (context, animation, secondaryAnimation, child) {
+          var tween = Tween(
+            begin: Offset(1, 0),
+            end: Offset.zero,
+          ).chain(CurveTween(curve: Curves.decelerate));
+
+          return SlideTransition(
+            position: animation.drive(tween),
+            child: child,
+          );
+        },
       ),
     );
   }
