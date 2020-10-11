@@ -6,16 +6,8 @@ import 'package:prueba/utils/size_config.dart';
 // Widgets
 import 'package:prueba/widgets/home/top_card.dart';
 
-// Blocs
-import 'package:prueba/blocs/theme_bloc.dart';
-
 class AppBarHome extends StatefulWidget {
-  final ThemeBloc themeBloc;
-
-  AppBarHome({
-    Key key,
-    @required this.themeBloc,
-  }) : super(key: key);
+  AppBarHome({Key key}) : super(key: key);
 
   @override
   _AppBarHomeState createState() => _AppBarHomeState();
@@ -39,7 +31,7 @@ class _AppBarHomeState extends State<AppBarHome> {
       backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       toolbarHeight: 0,
       flexibleSpace: FlexibleSpaceBar(
-        background: TopCardHome(themeBloc: widget.themeBloc),
+        background: TopCardHome(),
       ),
     );
   }

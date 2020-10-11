@@ -18,3 +18,5 @@ class ThemeBloc {
     await _themeStream?.close();
   }
 }
+
+ThemeBloc themeBloc = ThemeBloc();

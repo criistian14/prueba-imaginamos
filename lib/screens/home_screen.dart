@@ -8,16 +8,13 @@ import 'package:prueba/widgets/home/app_bar.dart';
 import 'package:prueba/widgets/home/movie_category.dart';
 
 // Blocs
-import 'package:prueba/blocs/theme_bloc.dart';
 import 'package:prueba/blocs/home_bloc.dart';
 
 // Models
 import 'package:prueba/models/movie_model.dart';
 
 class HomeScreen extends StatefulWidget {
-  final ThemeBloc themeBloc;
-
-  HomeScreen({Key key, @required this.themeBloc}) : super(key: key);
+  HomeScreen({Key key}) : super(key: key);
 
   @override
   _HomeScreenState createState() => _HomeScreenState();
@@ -53,7 +50,6 @@ class _HomeScreenState extends State<HomeScreen> {
           builder: (context, movieList) {
             return MovieCategory(
               isFirst: true,
-              homeBloc: _homeBloc,
               title: "Recommended For You",
               loading: loading.data,
               movies: movieList.data,
@@ -77,7 +73,6 @@ class _HomeScreenState extends State<HomeScreen> {
           initialData: [],
           builder: (context, movieList) {
             return MovieCategory(
-              homeBloc: _homeBloc,
               title: "Top Rated",
               loading: loading.data,
               movies: movieList.data,
@@ -101,7 +96,6 @@ class _HomeScreenState extends State<HomeScreen> {
           initialData: [],
           builder: (context, movieList) {
             return MovieCategory(
-              homeBloc: _homeBloc,
               title: "Trending - Week",
               loading: loading.data,
               movies: movieList.data,
@@ -126,7 +120,7 @@ class _HomeScreenState extends State<HomeScreen> {
           child: CustomScrollView(
             slivers: [
               // App Bar With Search
-              AppBarHome(themeBloc: widget.themeBloc),
+              AppBarHome(),
 
               // List Movies
               SliverList(

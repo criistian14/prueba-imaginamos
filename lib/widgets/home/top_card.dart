@@ -10,12 +10,7 @@ import 'package:prueba/utils/size_config.dart';
 import 'package:prueba/blocs/theme_bloc.dart';
 
 class TopCardHome extends StatefulWidget {
-  final ThemeBloc themeBloc;
-
-  TopCardHome({
-    Key key,
-    @required this.themeBloc,
-  }) : super(key: key);
+  TopCardHome({Key key}) : super(key: key);
 
   @override
   _TopCardHomeState createState() => _TopCardHomeState();
@@ -61,7 +56,7 @@ class _TopCardHomeState extends State<TopCardHome> {
   Widget _switchDarkMode() {
     return StreamBuilder<bool>(
       initialData: true,
-      stream: widget.themeBloc.darkThemeIsEnabled,
+      stream: themeBloc.darkThemeIsEnabled,
       builder: (context, snapshot) {
         return Container(
           height: SizeConfig.safeBlockVertical * 4.5,
@@ -114,7 +109,7 @@ class _TopCardHomeState extends State<TopCardHome> {
   // Change Theme (Dark - Light)
   // ====================================================================
   void _changeTheme(bool value) {
-    widget.themeBloc.changeTheTheme(!value);
+    themeBloc.changeTheTheme(!value);
   }
 
   // ====================================================================

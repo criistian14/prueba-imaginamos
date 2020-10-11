@@ -10,11 +10,7 @@ import 'package:prueba/widgets/home/loading_movie_card.dart';
 // Models
 import 'package:prueba/models/movie_model.dart';
 
-// Blocs
-import 'package:prueba/blocs/home_bloc.dart';
-
 class MovieCategory extends StatefulWidget {
-  final HomeBloc homeBloc;
   final String title;
   final bool isFirst, loading;
   final List<MovieModel> movies;
@@ -23,7 +19,6 @@ class MovieCategory extends StatefulWidget {
     Key key,
     this.isFirst = false,
     @required this.loading,
-    @required this.homeBloc,
     @required this.title,
     @required this.movies,
   }) : super(key: key);
@@ -33,15 +28,6 @@ class MovieCategory extends StatefulWidget {
 }
 
 class _MovieCategoryState extends State<MovieCategory> {
-  @override
-  void initState() {
-    super.initState();
-
-    // widget.homeBloc.fetchMovies(
-    //   typeMovie: widget.movieCategory.typeMovieCategory,
-    // );
-  }
-
   // ====================================================================
   // Title Category
   // ====================================================================
@@ -136,29 +122,8 @@ class _MovieCategoryState extends State<MovieCategory> {
           // Title Category
           _titleCategory(),
 
-          _movieList(),
-
           // Movie List
-          // StreamBuilder<List<MovieModel>>(
-          //   stream: widget.homeBloc.movieList,
-          //   builder: (context, movieList) {
-          //     return StreamBuilder<bool>(
-          //       initialData: true,
-          //       stream: widget.homeBloc.loadingMovieList,
-          //       builder: (context, loadingMovieList) {
-          //         if (loadingMovieList.data) {
-          //           return _loadingMovieList();
-          //         }
-
-          //         if (!movieList.hasData && movieList.data == null) {
-          //           return Container();
-          //         }
-
-          //         return _movieList(movieList.data);
-          //       },
-          //     );
-          //   },
-          // ),
+          _movieList(),
         ],
       ),
     );

@@ -20,8 +20,6 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  ThemeBloc themeBloc = ThemeBloc();
-
   @override
   void dispose() {
     themeBloc.dispose();
@@ -34,19 +32,15 @@ class _MyAppState extends State<MyApp> {
   ThemeData _lightTheme() {
     return ThemeData(
       brightness: Brightness.light,
+
+      // Colors
       accentColor: Colors.black,
-      fontFamily: AppConfig.primaryFontFamily,
       scaffoldBackgroundColor: HexToColor(AppConfig.primaryColor),
       backgroundColor: Colors.white,
-      inputDecorationTheme: InputDecorationTheme(
-        fillColor: HexToColor("#8DBDE0"),
-        filled: true,
-        border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(40),
-          borderSide: BorderSide.none,
-        ),
-        focusColor: HexToColor(AppConfig.backgroundLightColor),
-      ),
+      unselectedWidgetColor: Colors.black38,
+
+      // Fonts
+      fontFamily: AppConfig.primaryFontFamily,
       textTheme: TextTheme(
         headline1: TextStyle(
           color: Colors.white,
@@ -60,7 +54,28 @@ class _MyAppState extends State<MyApp> {
         subtitle2: TextStyle(
           color: Colors.black54,
         ),
+        bodyText1: TextStyle(
+          color: Colors.black54,
+          letterSpacing: 1.2,
+          wordSpacing: 1.3,
+        ),
       ),
+
+      // Text Fields
+      inputDecorationTheme: InputDecorationTheme(
+        fillColor: HexToColor("#8DBDE0"),
+        filled: true,
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(40),
+          borderSide: BorderSide.none,
+        ),
+        focusColor: HexToColor(AppConfig.backgroundLightColor),
+      ),
+
+      // Buttons
+      buttonColor: HexToColor(AppConfig.primaryColor),
+
+      // Others
       visualDensity: VisualDensity.adaptivePlatformDensity,
     );
   }
@@ -71,19 +86,15 @@ class _MyAppState extends State<MyApp> {
   ThemeData _darkTheme() {
     return ThemeData(
       brightness: Brightness.dark,
+
+      // Colors
       accentColor: Colors.white,
-      fontFamily: AppConfig.primaryFontFamily,
       scaffoldBackgroundColor: HexToColor(AppConfig.primaryColor),
       backgroundColor: HexToColor(AppConfig.backgroundDarkColor),
-      inputDecorationTheme: InputDecorationTheme(
-        fillColor: HexToColor("#8DBDE0"),
-        filled: true,
-        border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(40),
-          borderSide: BorderSide.none,
-        ),
-        focusColor: Colors.white,
-      ),
+      unselectedWidgetColor: Colors.white30,
+
+      // Fonts
+      fontFamily: AppConfig.primaryFontFamily,
       textTheme: TextTheme(
         headline1: TextStyle(
           color: Colors.white,
@@ -97,7 +108,28 @@ class _MyAppState extends State<MyApp> {
         subtitle2: TextStyle(
           color: Colors.white60,
         ),
+        bodyText1: TextStyle(
+          color: Colors.white60,
+          letterSpacing: 1,
+          height: 1.6,
+        ),
       ),
+
+      // Text Fields
+      inputDecorationTheme: InputDecorationTheme(
+        fillColor: HexToColor("#8DBDE0"),
+        filled: true,
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(40),
+          borderSide: BorderSide.none,
+        ),
+        focusColor: Colors.white,
+      ),
+
+      // Buttons
+      buttonColor: HexToColor("#69727E"),
+
+      // Others
       visualDensity: VisualDensity.adaptivePlatformDensity,
     );
   }
@@ -112,9 +144,7 @@ class _MyAppState extends State<MyApp> {
           title: 'Prueba Imaginamos',
           debugShowCheckedModeBanner: false,
           theme: darkThemeIsEnabled.data ? _darkTheme() : _lightTheme(),
-          home: HomeScreen(
-            themeBloc: themeBloc,
-          ),
+          home: HomeScreen(),
         );
       },
     );
