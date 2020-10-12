@@ -29,9 +29,11 @@ class _TopCardHomeState extends State<TopCardHome> {
       height: SizeConfig.safeBlockVertical * 25,
       padding: EdgeInsets.only(
         bottom: SizeConfig.safeBlockVertical * 4,
-        left: SizeConfig.safeBlockHorizontal * 10,
+        left: SizeConfig.safeBlockHorizontal * 14,
         right: SizeConfig.safeBlockHorizontal * 10,
+        top: MediaQuery.of(context).padding.top,
       ),
+      color: Theme.of(context).primaryColor,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -53,7 +55,7 @@ class _TopCardHomeState extends State<TopCardHome> {
         "Hello, what do you \nwant to watch ?",
         style: Theme.of(context).textTheme.headline1.merge(
               TextStyle(
-                fontSize: SizeConfig.safeBlockHorizontal * 6,
+                fontSize: SizeConfig.safeBlockHorizontal * 5.7,
                 height: SizeConfig.safeBlockVertical * 0.19,
               ),
             ),
@@ -67,6 +69,9 @@ class _TopCardHomeState extends State<TopCardHome> {
   Widget _search() {
     return Container(
       height: SizeConfig.safeBlockVertical * 4,
+      margin: EdgeInsets.only(
+        top: SizeConfig.safeBlockVertical * 2,
+      ),
       child: TextFormField(
         decoration: InputDecoration(
           contentPadding: EdgeInsets.zero,
@@ -86,7 +91,7 @@ class _TopCardHomeState extends State<TopCardHome> {
       stream: themeBloc.darkThemeIsEnabled,
       builder: (context, snapshot) {
         return Container(
-          height: SizeConfig.safeBlockVertical * 3.8,
+          height: SizeConfig.safeBlockVertical * 3.4,
           width: SizeConfig.safeBlockHorizontal * 100,
           child: Row(
             mainAxisAlignment: MainAxisAlignment.end,
@@ -119,14 +124,14 @@ class _TopCardHomeState extends State<TopCardHome> {
     if (Platform.isIOS) {
       return Icon(
         darkMode ? CupertinoIcons.sun_max_fill : CupertinoIcons.moon_fill,
-        size: SizeConfig.safeBlockVertical * 4.2,
+        size: SizeConfig.safeBlockVertical * 3.4,
         color: Colors.white,
       );
     }
 
     return Icon(
       darkMode ? Icons.wb_sunny : Icons.nightlight_round,
-      size: SizeConfig.safeBlockVertical * 4.2,
+      size: SizeConfig.safeBlockVertical * 3.4,
       color: Colors.white,
     );
   }

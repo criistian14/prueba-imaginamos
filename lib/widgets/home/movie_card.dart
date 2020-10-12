@@ -36,9 +36,11 @@ class _MovieCardState extends State<MovieCard> {
     return GestureDetector(
       onTap: _openMovieDetails,
       child: Container(
+        width: SizeConfig.safeBlockHorizontal * 35,
         margin: EdgeInsets.only(
           right: SizeConfig.safeBlockHorizontal * 5,
         ),
+        // color: Colors.red,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -59,8 +61,8 @@ class _MovieCardState extends State<MovieCard> {
   // ====================================================================
   Widget _thumbnailMovie() {
     return Container(
-      width: SizeConfig.safeBlockHorizontal * 30,
-      height: SizeConfig.safeBlockHorizontal * 37,
+      width: SizeConfig.safeBlockHorizontal * 35,
+      height: SizeConfig.safeBlockVertical * 21,
       child: ClipRRect(
         borderRadius: BorderRadius.circular(15),
         child: FadeInImage.assetNetwork(
@@ -77,10 +79,10 @@ class _MovieCardState extends State<MovieCard> {
   // ====================================================================
   Widget _titleMovie() {
     return Container(
-      width: SizeConfig.safeBlockHorizontal * 30,
+      width: SizeConfig.safeBlockHorizontal * 35,
       height: SizeConfig.safeBlockVertical * 2,
       margin: EdgeInsets.only(
-        top: SizeConfig.safeBlockVertical * .5,
+        top: SizeConfig.safeBlockVertical * 1.5,
       ),
       child: Text(
         widget.movie.title,

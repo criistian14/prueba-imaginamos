@@ -35,27 +35,36 @@ class _MovieCategoryState extends State<MovieCategory> {
   Widget build(BuildContext context) {
     SizeConfig().init(context);
 
-    return Container(
-      height: SizeConfig.safeBlockVertical * 37,
-      width: SizeConfig.safeBlockHorizontal * 100,
-      margin: EdgeInsets.zero,
-      padding: EdgeInsets.only(
-        top: _validatePaddingTop(),
-        left: SizeConfig.safeBlockHorizontal * 8,
-      ),
-      decoration: BoxDecoration(
-        color: Theme.of(context).backgroundColor,
-        borderRadius: _validateRadius(),
-      ),
-      child: Column(
-        children: [
-          // Title Category
-          _titleCategory(),
+    return Stack(
+      children: [
+        Container(
+          height: SizeConfig.safeBlockVertical * 5,
+          width: SizeConfig.safeBlockHorizontal * 100,
+          color: Theme.of(context).primaryColor,
+        ),
+        Container(
+          height: SizeConfig.safeBlockVertical * 35,
+          width: SizeConfig.safeBlockHorizontal * 100,
+          margin: EdgeInsets.zero,
+          padding: EdgeInsets.only(
+            top: _validatePaddingTop(),
+            left: SizeConfig.safeBlockHorizontal * 8,
+          ),
+          decoration: BoxDecoration(
+            borderRadius: _validateRadius(),
+            color: Theme.of(context).backgroundColor,
+          ),
+          child: Column(
+            children: [
+              // Title Category
+              _titleCategory(),
 
-          // Movie List
-          _movieList(),
-        ],
-      ),
+              // Movie List
+              _movieList(),
+            ],
+          ),
+        ),
+      ],
     );
   }
 
@@ -102,7 +111,7 @@ class _MovieCategoryState extends State<MovieCategory> {
     return Expanded(
       child: ListView.builder(
         padding: EdgeInsets.only(
-          top: SizeConfig.safeBlockVertical * 2.3,
+          top: SizeConfig.safeBlockVertical * 2.4,
         ),
         scrollDirection: Axis.horizontal,
         itemBuilder: (context, index) {
@@ -155,6 +164,6 @@ class _MovieCategoryState extends State<MovieCategory> {
       return SizeConfig.safeBlockVertical * 4;
     }
 
-    return SizeConfig.safeBlockVertical * 2;
+    return SizeConfig.safeBlockVertical * 3;
   }
 }

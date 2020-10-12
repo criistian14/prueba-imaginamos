@@ -34,9 +34,10 @@ class _MyAppState extends State<MyApp> {
       brightness: Brightness.light,
 
       // Colors
+      primaryColor: HexToColor(AppConfig.primaryColor),
       accentColor: Colors.black,
-      scaffoldBackgroundColor: HexToColor(AppConfig.primaryColor),
-      backgroundColor: Colors.white,
+      scaffoldBackgroundColor: Colors.white,
+      backgroundColor:  Colors.white,
       unselectedWidgetColor: Colors.black38,
 
       // Fonts
@@ -88,9 +89,10 @@ class _MyAppState extends State<MyApp> {
       brightness: Brightness.dark,
 
       // Colors
+      primaryColor: HexToColor(AppConfig.primaryColor),
       accentColor: Colors.white,
-      scaffoldBackgroundColor: HexToColor(AppConfig.primaryColor),
-      backgroundColor: HexToColor(AppConfig.backgroundDarkColor),
+      scaffoldBackgroundColor: HexToColor(AppConfig.backgroundDarkColor),
+      backgroundColor:  HexToColor(AppConfig.backgroundDarkColor),      
       unselectedWidgetColor: Colors.white30,
 
       // Fonts

@@ -28,7 +28,7 @@ class _AppBarHomeState extends State<AppBarHome> {
       elevation: 0,
       stretch: false,
       expandedHeight: SizeConfig.safeBlockVertical * 25,
-      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+      backgroundColor: Theme.of(context).backgroundColor,
       toolbarHeight: 0,
       flexibleSpace: FlexibleSpaceBar(
         background: TopCardHome(),

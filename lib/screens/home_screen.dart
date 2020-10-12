@@ -47,6 +47,7 @@ class _HomeScreenState extends State<HomeScreen> {
       body: GestureDetector(
         onTap: () => FocusScope.of(context).requestFocus(FocusNode()),
         child: SafeArea(
+          top: false,
           child: CustomScrollView(
             slivers: [
               // App Bar With Search
