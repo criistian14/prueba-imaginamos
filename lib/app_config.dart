@@ -4,8 +4,7 @@ class AppConfig {
   static final paramApiKey = "?api_key=$apiKey";
 
   // Image
-  static final sizeImage = "w500";
-  static final urlImage = "https://image.tmdb.org/t/p/$sizeImage";
+  static final urlImage = "https://image.tmdb.org/t/p";
 
   // Fonts
   static final primaryFontFamily = "OpenSans";

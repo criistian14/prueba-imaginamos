@@ -27,41 +27,6 @@ class MovieCard extends StatefulWidget {
 
 class _MovieCardState extends State<MovieCard> {
   // ====================================================================
-  // Thumbnail Movie
-  // ====================================================================
-  Widget _thumbnailMovie() {
-    return Container(
-      width: SizeConfig.safeBlockHorizontal * 28,
-      child: ClipRRect(
-        borderRadius: BorderRadius.circular(15),
-        child: FadeInImage.assetNetwork(
-          placeholder: "assets/images/lsb-loading.gif",
-          image: "${AppConfig.urlImage}${widget.movie.posterPath}",
-          fit: BoxFit.cover,
-        ),
-      ),
-    );
-  }
-
-  // ====================================================================
-  // Title Movie
-  // ====================================================================
-  Widget _titleMovie() {
-    return Container(
-      width: SizeConfig.safeBlockHorizontal * 26,
-      child: Text(
-        widget.movie.title,
-        overflow: TextOverflow.ellipsis,
-        style: Theme.of(context).textTheme.subtitle1.merge(
-              TextStyle(
-                fontSize: SizeConfig.safeBlockHorizontal * 3.7,
-              ),
-            ),
-      ),
-    );
-  }
-
-  // ====================================================================
   // Build Widget
   // ====================================================================
   @override
@@ -72,7 +37,7 @@ class _MovieCardState extends State<MovieCard> {
       onTap: _openMovieDetails,
       child: Container(
         margin: EdgeInsets.only(
-          right: SizeConfig.safeBlockHorizontal * 7,
+          right: SizeConfig.safeBlockHorizontal * 5,
         ),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -85,6 +50,46 @@ class _MovieCardState extends State<MovieCard> {
             ),
           ],
         ),
+      ),
+    );
+  }
+
+  // ====================================================================
+  // Thumbnail Movie
+  // ====================================================================
+  Widget _thumbnailMovie() {
+    return Container(
+      width: SizeConfig.safeBlockHorizontal * 30,
+      height: SizeConfig.safeBlockHorizontal * 37,
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(15),
+        child: FadeInImage.assetNetwork(
+          placeholder: "assets/images/lsb-loading.gif",
+          image: "${AppConfig.urlImage}/w500${widget.movie.posterPath}",
+          fit: BoxFit.cover,
+        ),
+      ),
+    );
+  }
+
+  // ====================================================================
+  // Title Movie
+  // ====================================================================
+  Widget _titleMovie() {
+    return Container(
+      width: SizeConfig.safeBlockHorizontal * 30,
+      height: SizeConfig.safeBlockVertical * 2,
+      margin: EdgeInsets.only(
+        top: SizeConfig.safeBlockVertical * .5,
+      ),
+      child: Text(
+        widget.movie.title,
+        overflow: TextOverflow.ellipsis,
+        style: Theme.of(context).textTheme.subtitle1.merge(
+              TextStyle(
+                fontSize: SizeConfig.safeBlockHorizontal * 3,
+              ),
+            ),
       ),
     );
   }

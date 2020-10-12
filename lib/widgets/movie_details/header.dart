@@ -23,59 +23,6 @@ class HeaderMovieDetails extends StatefulWidget {
 
 class _HeaderMovieDetailsState extends State<HeaderMovieDetails> {
   // =====================================================================
-  // Button Watch Now
-  // =====================================================================
-  Widget _btnWatchNow() {
-    return RaisedButton(
-      onPressed: () {},
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(30),
-      ),
-      padding: EdgeInsets.symmetric(
-        horizontal: SizeConfig.safeBlockHorizontal * 6,
-        vertical: SizeConfig.safeBlockVertical * 1.5,
-      ),
-      child: Text(
-        "WATCH NOW",
-        style: TextStyle(
-          color: Colors.white,
-          fontWeight: FontWeight.w600,
-          fontSize: SizeConfig.safeBlockHorizontal * 3,
-        ),
-      ),
-    );
-  }
-
-  // =====================================================================
-  // Title Movie
-  // =====================================================================
-  Widget _titleMovie() {
-    return Container(
-      width: SizeConfig.safeBlockHorizontal * 76,
-      child: Text(
-        widget.movie.title,
-        style: Theme.of(context).textTheme.headline5.merge(
-              TextStyle(
-                fontSize: SizeConfig.safeBlockHorizontal * 6,
-              ),
-            ),
-      ),
-    );
-  }
-
-  // =====================================================================
-  // Image Resolution (4K)
-  // =====================================================================
-  Widget _resolution() {
-    return ImageIcon(
-      AssetImage(
-        "assets/images/4k-fullhd.png",
-      ),
-      color: Theme.of(context).unselectedWidgetColor,
-    );
-  }
-
-  // =====================================================================
   // Build Widget
   // =====================================================================
   @override
@@ -123,6 +70,60 @@ class _HeaderMovieDetailsState extends State<HeaderMovieDetails> {
           )
         ],
       ),
+    );
+  }
+
+  // =====================================================================
+  // Button Watch Now
+  // =====================================================================
+  Widget _btnWatchNow() {
+    return RaisedButton(
+      onPressed: () {},
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(30),
+      ),
+      padding: EdgeInsets.symmetric(
+        horizontal: SizeConfig.safeBlockHorizontal * 6,
+        vertical: SizeConfig.safeBlockVertical * 1.5,
+      ),
+      child: Text(
+        "WATCH NOW",
+        style: TextStyle(
+          color: Colors.white,
+          fontWeight: FontWeight.w600,
+          fontSize: SizeConfig.safeBlockHorizontal * 2.5,
+        ),
+      ),
+    );
+  }
+
+  // =====================================================================
+  // Title Movie
+  // =====================================================================
+  Widget _titleMovie() {
+    return Container(
+      width: SizeConfig.safeBlockHorizontal * 76,
+      child: Text(
+        widget.movie.title,
+        style: Theme.of(context).textTheme.headline5.merge(
+              TextStyle(
+                fontSize: SizeConfig.safeBlockHorizontal * 6,
+              ),
+            ),
+      ),
+    );
+  }
+
+  // =====================================================================
+  // Image Resolution (4K)
+  // =====================================================================
+  Widget _resolution() {
+    return ImageIcon(
+      AssetImage(
+        "assets/images/4k-fullhd.png",
+      ),
+      color: Theme.of(context).unselectedWidgetColor,
+       size: SizeConfig.safeBlockVertical * 2.4,
     );
   }
 }

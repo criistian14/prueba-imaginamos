@@ -18,6 +18,33 @@ class TopCardHome extends StatefulWidget {
 
 class _TopCardHomeState extends State<TopCardHome> {
   // ====================================================================
+  // Build Widget
+  // ====================================================================
+  @override
+  Widget build(BuildContext context) {
+    SizeConfig().init(context);
+
+    return Container(
+      width: SizeConfig.safeBlockHorizontal * 100,
+      height: SizeConfig.safeBlockVertical * 25,
+      padding: EdgeInsets.only(
+        bottom: SizeConfig.safeBlockVertical * 4,
+        left: SizeConfig.safeBlockHorizontal * 10,
+        right: SizeConfig.safeBlockHorizontal * 10,
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          _switchDarkMode(),
+          _titleHome(),
+          _search(),
+        ],
+      ),
+    );
+  }
+
+  // ====================================================================
   // Title Home
   // ====================================================================
   Widget _titleHome() {
@@ -26,8 +53,8 @@ class _TopCardHomeState extends State<TopCardHome> {
         "Hello, what do you \nwant to watch ?",
         style: Theme.of(context).textTheme.headline1.merge(
               TextStyle(
-                fontSize: SizeConfig.safeBlockHorizontal * 6.4,
-                height: SizeConfig.safeBlockVertical * 0.22,
+                fontSize: SizeConfig.safeBlockHorizontal * 6,
+                height: SizeConfig.safeBlockVertical * 0.19,
               ),
             ),
       ),
@@ -39,7 +66,7 @@ class _TopCardHomeState extends State<TopCardHome> {
   // ====================================================================
   Widget _search() {
     return Container(
-      height: SizeConfig.safeBlockVertical * 5,
+      height: SizeConfig.safeBlockVertical * 4,
       child: TextFormField(
         decoration: InputDecoration(
           contentPadding: EdgeInsets.zero,
@@ -59,7 +86,7 @@ class _TopCardHomeState extends State<TopCardHome> {
       stream: themeBloc.darkThemeIsEnabled,
       builder: (context, snapshot) {
         return Container(
-          height: SizeConfig.safeBlockVertical * 4.5,
+          height: SizeConfig.safeBlockVertical * 3.8,
           width: SizeConfig.safeBlockHorizontal * 100,
           child: Row(
             mainAxisAlignment: MainAxisAlignment.end,
@@ -79,33 +106,6 @@ class _TopCardHomeState extends State<TopCardHome> {
   }
 
   // ====================================================================
-  // Build Widget
-  // ====================================================================
-  @override
-  Widget build(BuildContext context) {
-    SizeConfig().init(context);
-
-    return Container(
-      width: SizeConfig.safeBlockHorizontal * 100,
-      height: SizeConfig.safeBlockVertical * 30,
-      padding: EdgeInsets.only(
-        bottom: SizeConfig.safeBlockVertical * 4.5,
-        left: SizeConfig.safeBlockHorizontal * 10,
-        right: SizeConfig.safeBlockHorizontal * 10,
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          _switchDarkMode(),
-          _titleHome(),
-          _search(),
-        ],
-      ),
-    );
-  }
-
-  // ====================================================================
   // Change Theme (Dark - Light)
   // ====================================================================
   void _changeTheme(bool value) {
@@ -119,14 +119,14 @@ class _TopCardHomeState extends State<TopCardHome> {
     if (Platform.isIOS) {
       return Icon(
         darkMode ? CupertinoIcons.sun_max_fill : CupertinoIcons.moon_fill,
-        size: SizeConfig.safeBlockVertical * 4.5,
+        size: SizeConfig.safeBlockVertical * 4.2,
         color: Colors.white,
       );
     }
 
     return Icon(
       darkMode ? Icons.wb_sunny : Icons.nightlight_round,
-      size: SizeConfig.safeBlockVertical * 4.5,
+      size: SizeConfig.safeBlockVertical * 4.2,
       color: Colors.white,
     );
   }
