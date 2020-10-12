@@ -31,13 +31,13 @@ class _OverviewMovieDetailsState extends State<OverviewMovieDetails> {
         horizontal: SizeConfig.safeBlockHorizontal * 8,
       ),
       margin: EdgeInsets.only(
-        top: SizeConfig.safeBlockVertical * 4,
+        top: SizeConfig.safeBlockVertical * 3,
       ),
       child: Text(
         widget.movie.overview,
         style: Theme.of(context).textTheme.bodyText1.merge(
               TextStyle(
-                fontSize: SizeConfig.safeBlockHorizontal * 3.7,
+                fontSize: SizeConfig.safeBlockHorizontal * 3.2,
               ),
             ),
       ),

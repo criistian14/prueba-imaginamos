@@ -83,7 +83,7 @@ class _InformationMovieDetailsState extends State<InformationMovieDetails> {
               title,
               style: Theme.of(context).textTheme.subtitle1.merge(
                     TextStyle(
-                      fontSize: SizeConfig.safeBlockHorizontal * 3.8,
+                      fontSize: SizeConfig.safeBlockHorizontal * 3.3,
                       fontWeight: FontWeight.w600,
                     ),
                   ),
@@ -96,7 +96,7 @@ class _InformationMovieDetailsState extends State<InformationMovieDetails> {
               data,
               style: Theme.of(context).textTheme.subtitle2.merge(
                     TextStyle(
-                      fontSize: SizeConfig.safeBlockHorizontal * 3.8,
+                      fontSize: SizeConfig.safeBlockHorizontal * 3.3,
                     ),
                   ),
             ),

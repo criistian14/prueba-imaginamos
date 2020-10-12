@@ -37,6 +37,37 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   // ====================================================================
+  // Build Widget
+  // ====================================================================
+  @override
+  Widget build(BuildContext context) {
+    SizeConfig().init(context);
+
+    return Scaffold(
+      body: GestureDetector(
+        onTap: () => FocusScope.of(context).requestFocus(FocusNode()),
+        child: SafeArea(
+          child: CustomScrollView(
+            slivers: [
+              // App Bar With Search
+              AppBarHome(),
+
+              // List Movies
+              SliverList(
+                delegate: SliverChildListDelegate([
+                  _recommendedMovies(),
+                  _topRatedMovies(),
+                  _trendingWeekMovies(),
+                ]),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  // ====================================================================
   // Recommended Movies
   // ====================================================================
   Widget _recommendedMovies() {
@@ -103,37 +134,6 @@ class _HomeScreenState extends State<HomeScreen> {
           },
         );
       },
-    );
-  }
-
-  // ====================================================================
-  // Build Widget
-  // ====================================================================
-  @override
-  Widget build(BuildContext context) {
-    SizeConfig().init(context);
-
-    return Scaffold(
-      body: GestureDetector(
-        onTap: () => FocusScope.of(context).requestFocus(FocusNode()),
-        child: SafeArea(
-          child: CustomScrollView(
-            slivers: [
-              // App Bar With Search
-              AppBarHome(),
-
-              // List Movies
-              SliverList(
-                delegate: SliverChildListDelegate([
-                  _recommendedMovies(),
-                  _topRatedMovies(),
-                  _trendingWeekMovies(),
-                ]),
-              ),
-            ],
-          ),
-        ),
-      ),
     );
   }
 }

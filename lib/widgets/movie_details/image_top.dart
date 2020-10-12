@@ -21,6 +21,29 @@ class ImageTopMovieDetails extends StatefulWidget {
 
 class _ImageTopMovieDetailsState extends State<ImageTopMovieDetails> {
   // =====================================================================
+  // Build Widget
+  // =====================================================================
+  @override
+  Widget build(BuildContext context) {
+    SizeConfig().init(context);
+
+    return Container(
+      width: SizeConfig.safeBlockHorizontal * 100,
+      height: SizeConfig.safeBlockVertical * 45,
+      child: Stack(
+        fit: StackFit.expand,
+        children: [
+          // Banner Image
+          _banner(),
+
+          // Actions
+          _actions(),
+        ],
+      ),
+    );
+  }
+
+  // =====================================================================
   // Banner Image
   // =====================================================================
   Widget _banner() {
@@ -30,8 +53,8 @@ class _ImageTopMovieDetailsState extends State<ImageTopMovieDetails> {
         bottomRight: Radius.circular(10),
       ),
       child: FadeInImage.assetNetwork(
-        placeholder: "assets/images/lsb-loading.gif",
-        image: "${AppConfig.urlImage}${widget.movie.backdropPath}",
+        placeholder: "assets/images/loading.gif",
+        image: "${AppConfig.urlImage}/original${widget.movie.backdropPath}",
         fit: BoxFit.fitHeight,
       ),
     );
@@ -66,29 +89,6 @@ class _ImageTopMovieDetailsState extends State<ImageTopMovieDetails> {
             ),
           ],
         ),
-      ),
-    );
-  }
-
-  // =====================================================================
-  // Build Widget
-  // =====================================================================
-  @override
-  Widget build(BuildContext context) {
-    SizeConfig().init(context);
-
-    return Container(
-      width: SizeConfig.safeBlockHorizontal * 100,
-      height: SizeConfig.safeBlockVertical * 45,
-      child: Stack(
-        fit: StackFit.expand,
-        children: [
-          // Banner Image
-          _banner(),
-
-          // Actions
-          _actions(),
-        ],
       ),
     );
   }

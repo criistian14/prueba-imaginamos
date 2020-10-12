@@ -36,7 +36,7 @@ class _CastMovieDetailsState extends State<CastMovieDetails> {
         horizontal: SizeConfig.safeBlockHorizontal * 8,
       ),
       margin: EdgeInsets.only(
-        top: SizeConfig.safeBlockVertical * 6,
+        top: SizeConfig.safeBlockVertical * 4,
       ),
       child: ListView.builder(
         scrollDirection: Axis.horizontal,
@@ -65,21 +65,24 @@ class _CastMovieDetailsState extends State<CastMovieDetails> {
         children: [
           // Profile Picture
           Container(
-            width: SizeConfig.safeBlockVertical * 10,
-            height: SizeConfig.safeBlockVertical * 10,
+            width: SizeConfig.safeBlockHorizontal * 13,
+            height: SizeConfig.safeBlockHorizontal * 13,
             child: _profilePicture(index),
           ),
 
           // Name
           Container(
             width: SizeConfig.safeBlockHorizontal * 16,
-            height: SizeConfig.safeBlockVertical * 7,
+            height: SizeConfig.safeBlockVertical * 6,
+            margin: EdgeInsets.only(
+              top: SizeConfig.safeBlockVertical * 1.5,
+            ),
             child: Text(
               widget.movie.peopleCast[index].name,
               textAlign: TextAlign.center,
               style: Theme.of(context).textTheme.subtitle2.merge(
                     TextStyle(
-                      fontSize: SizeConfig.safeBlockHorizontal * 3.9,
+                      fontSize: SizeConfig.safeBlockHorizontal * 3.3,
                     ),
                   ),
             ),
@@ -104,7 +107,7 @@ class _CastMovieDetailsState extends State<CastMovieDetails> {
       child: FadeInImage.assetNetwork(
         placeholder: "assets/images/lsb-loading.gif",
         image:
-            "${AppConfig.urlImage}${widget.movie.peopleCast[index].profilePath}",
+            "${AppConfig.urlImage}/w500${widget.movie.peopleCast[index].profilePath}",
         fit: BoxFit.cover,
       ),
     );

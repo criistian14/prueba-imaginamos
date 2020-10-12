@@ -29,6 +29,37 @@ class MovieCategory extends StatefulWidget {
 
 class _MovieCategoryState extends State<MovieCategory> {
   // ====================================================================
+  // Build Widget
+  // ====================================================================
+  @override
+  Widget build(BuildContext context) {
+    SizeConfig().init(context);
+
+    return Container(
+      height: SizeConfig.safeBlockVertical * 37,
+      width: SizeConfig.safeBlockHorizontal * 100,
+      margin: EdgeInsets.zero,
+      padding: EdgeInsets.only(
+        top: _validatePaddingTop(),
+        left: SizeConfig.safeBlockHorizontal * 8,
+      ),
+      decoration: BoxDecoration(
+        color: Theme.of(context).backgroundColor,
+        borderRadius: _validateRadius(),
+      ),
+      child: Column(
+        children: [
+          // Title Category
+          _titleCategory(),
+
+          // Movie List
+          _movieList(),
+        ],
+      ),
+    );
+  }
+
+  // ====================================================================
   // Title Category
   // ====================================================================
   Widget _titleCategory() {
@@ -43,13 +74,17 @@ class _MovieCategoryState extends State<MovieCategory> {
             widget.title.toUpperCase(),
             style: Theme.of(context).textTheme.headline5.merge(
                   TextStyle(
-                    fontSize: SizeConfig.safeBlockHorizontal * 3.3,
+                    fontSize: SizeConfig.safeBlockHorizontal * 3,
                   ),
                 ),
           ),
           Text(
             "See all",
-            style: Theme.of(context).textTheme.subtitle2,
+            style: Theme.of(context).textTheme.subtitle2.merge(
+                  TextStyle(
+                    fontSize: SizeConfig.safeBlockHorizontal * 2.8,
+                  ),
+                ),
           ),
         ],
       ),
@@ -67,7 +102,7 @@ class _MovieCategoryState extends State<MovieCategory> {
     return Expanded(
       child: ListView.builder(
         padding: EdgeInsets.only(
-          top: SizeConfig.safeBlockVertical * 3,
+          top: SizeConfig.safeBlockVertical * 2.3,
         ),
         scrollDirection: Axis.horizontal,
         itemBuilder: (context, index) {
@@ -99,37 +134,6 @@ class _MovieCategoryState extends State<MovieCategory> {
   }
 
   // ====================================================================
-  // Build Widget
-  // ====================================================================
-  @override
-  Widget build(BuildContext context) {
-    SizeConfig().init(context);
-
-    return Container(
-      height: SizeConfig.safeBlockVertical * 45,
-      width: SizeConfig.safeBlockHorizontal * 100,
-      margin: EdgeInsets.zero,
-      padding: EdgeInsets.only(
-        top: _validatePaddingTop(),
-        left: SizeConfig.safeBlockHorizontal * 8,
-      ),
-      decoration: BoxDecoration(
-        color: Theme.of(context).backgroundColor,
-        borderRadius: _validateRadius(),
-      ),
-      child: Column(
-        children: [
-          // Title Category
-          _titleCategory(),
-
-          // Movie List
-          _movieList(),
-        ],
-      ),
-    );
-  }
-
-  // ====================================================================
   // Validate Border Radius First Category
   // ====================================================================
   BorderRadius _validateRadius() {
@@ -140,7 +144,7 @@ class _MovieCategoryState extends State<MovieCategory> {
       );
     }
 
-    return null;
+    return BorderRadius.zero;
   }
 
   // ====================================================================
@@ -148,9 +152,9 @@ class _MovieCategoryState extends State<MovieCategory> {
   // ====================================================================
   double _validatePaddingTop() {
     if (widget.isFirst) {
-      return SizeConfig.safeBlockVertical * 6;
+      return SizeConfig.safeBlockVertical * 4;
     }
 
-    return SizeConfig.safeBlockVertical * 3;
+    return SizeConfig.safeBlockVertical * 2;
   }
 }
