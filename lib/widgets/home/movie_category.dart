@@ -43,7 +43,7 @@ class _MovieCategoryState extends State<MovieCategory> {
           color: Theme.of(context).primaryColor,
         ),
         Container(
-          height: SizeConfig.safeBlockVertical * 35,
+          height: SizeConfig.safeBlockVertical * 35.8,
           width: SizeConfig.safeBlockHorizontal * 100,
           margin: EdgeInsets.zero,
           padding: EdgeInsets.only(

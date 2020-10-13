@@ -31,7 +31,7 @@ class _CastMovieDetailsState extends State<CastMovieDetails> {
 
     return Container(
       width: SizeConfig.safeBlockHorizontal * 100,
-      height: SizeConfig.safeBlockVertical * 18,
+      height: SizeConfig.safeBlockVertical * 15,
       padding: EdgeInsets.symmetric(
         horizontal: SizeConfig.safeBlockHorizontal * 8,
       ),

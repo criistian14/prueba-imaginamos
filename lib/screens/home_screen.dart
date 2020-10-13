@@ -127,10 +127,15 @@ class _HomeScreenState extends State<HomeScreen> {
           stream: _homeBloc.listTrendingMovies,
           initialData: [],
           builder: (context, movieList) {
-            return MovieCategory(
-              title: "Trending - Week",
-              loading: loading.data,
-              movies: movieList.data,
+            return Container(
+              margin: EdgeInsets.only(
+                bottom: SizeConfig.safeBlockVertical * 4,
+              ),
+              child: MovieCategory(
+                title: "Trending - Week",
+                loading: loading.data,
+                movies: movieList.data,
+              ),
             );
           },
         );

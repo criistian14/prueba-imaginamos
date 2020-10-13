@@ -35,7 +35,6 @@ class _InformationMovieDetailsState extends State<InformationMovieDetails> {
         horizontal: SizeConfig.safeBlockHorizontal * 8,
       ),
       margin: EdgeInsets.only(
-        top: SizeConfig.safeBlockVertical * 1.7,
         bottom: SizeConfig.safeBlockVertical * 3,
       ),
       child: Column(
