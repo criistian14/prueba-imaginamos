@@ -5,13 +5,13 @@ import 'package:prueba/utils/size_config.dart';
 
 // Models
 import 'package:prueba/models/movie_model.dart';
-import 'package:prueba/widgets/movie_details/cast.dart';
 
 // Widgets
 import 'package:prueba/widgets/movie_details/image_top.dart';
 import 'package:prueba/widgets/movie_details/header.dart';
 import 'package:prueba/widgets/movie_details/overview.dart';
 import 'package:prueba/widgets/movie_details/information.dart';
+import 'package:prueba/widgets/movie_details/cast.dart';
 
 // Blocs
 import 'package:prueba/blocs/movie_details_bloc.dart';
@@ -30,10 +30,20 @@ class MovieDetailsScreen extends StatefulWidget {
 
 class _MovieDetailsScreenState extends State<MovieDetailsScreen> {
   MovieDetailsBloc _movieDetailsBloc = MovieDetailsBloc();
+  GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   void initState() {
     super.initState();
+
+    // Listen Errors
+    _movieDetailsBloc.errorMessage.listen((error) {
+      SnackBar _snackBar = SnackBar(
+        content: Text(error),
+      );
+
+      _scaffoldKey.currentState.showSnackBar(_snackBar);
+    });
 
     _movieDetailsBloc.fetchMovieDetails(id: widget.movie.id);
   }
@@ -46,6 +56,7 @@ class _MovieDetailsScreenState extends State<MovieDetailsScreen> {
     SizeConfig().init(context);
 
     return Scaffold(
+      key: _scaffoldKey,
       backgroundColor: Theme.of(context).backgroundColor,
       body: SafeArea(
         top: false,

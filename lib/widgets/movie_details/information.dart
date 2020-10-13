@@ -69,6 +69,12 @@ class _InformationMovieDetailsState extends State<InformationMovieDetails> {
     String title,
     String data,
   }) {
+    // Font Size (Responsive)
+    double _fontSize = SizeConfig.safeBlockHorizontal * 3.3;
+    if (SizeConfig.orientation == Orientation.landscape) {
+      _fontSize = SizeConfig.safeBlockHorizontal * 2.2;
+    }
+
     return Container(
       margin: EdgeInsets.only(
         bottom: SizeConfig.safeBlockVertical * 1.2,
@@ -82,7 +88,7 @@ class _InformationMovieDetailsState extends State<InformationMovieDetails> {
               title,
               style: Theme.of(context).textTheme.subtitle1.merge(
                     TextStyle(
-                      fontSize: SizeConfig.safeBlockHorizontal * 3.3,
+                      fontSize: _fontSize,
                       fontWeight: FontWeight.w600,
                     ),
                   ),
@@ -95,7 +101,7 @@ class _InformationMovieDetailsState extends State<InformationMovieDetails> {
               data,
               style: Theme.of(context).textTheme.subtitle2.merge(
                     TextStyle(
-                      fontSize: SizeConfig.safeBlockHorizontal * 3.3,
+                      fontSize: _fontSize,
                     ),
                   ),
             ),

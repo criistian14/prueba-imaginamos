@@ -77,21 +77,33 @@ class _HeaderMovieDetailsState extends State<HeaderMovieDetails> {
   // Button Watch Now
   // =====================================================================
   Widget _btnWatchNow() {
+    // Size (Responsive)
+    double _fontSize = SizeConfig.safeBlockHorizontal * 2.5;
+    // Padding (Responsive)
+    EdgeInsets _padding = EdgeInsets.symmetric(
+      horizontal: SizeConfig.safeBlockHorizontal * 6,
+      vertical: SizeConfig.safeBlockVertical * 1.5,
+    );
+    if (SizeConfig.orientation == Orientation.landscape) {
+      _fontSize = SizeConfig.safeBlockHorizontal * 2;
+      _padding = EdgeInsets.symmetric(
+        horizontal: SizeConfig.safeBlockHorizontal * 4,
+        vertical: SizeConfig.safeBlockVertical * 2.5,
+      );
+    }
+
     return RaisedButton(
       onPressed: () {},
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(30),
       ),
-      padding: EdgeInsets.symmetric(
-        horizontal: SizeConfig.safeBlockHorizontal * 6,
-        vertical: SizeConfig.safeBlockVertical * 1.5,
-      ),
+      padding: _padding,
       child: Text(
         "WATCH NOW",
         style: TextStyle(
           color: Colors.white,
           fontWeight: FontWeight.w600,
-          fontSize: SizeConfig.safeBlockHorizontal * 2.5,
+          fontSize: _fontSize,
         ),
       ),
     );
@@ -101,13 +113,19 @@ class _HeaderMovieDetailsState extends State<HeaderMovieDetails> {
   // Title Movie
   // =====================================================================
   Widget _titleMovie() {
+    // Size Icon (Responsive)
+    double _fontSize = SizeConfig.safeBlockHorizontal * 6;
+    if (SizeConfig.orientation == Orientation.landscape) {
+      _fontSize = SizeConfig.safeBlockHorizontal * 3.4;
+    }
+
     return Container(
       width: SizeConfig.safeBlockHorizontal * 76,
       child: Text(
         widget.movie.title,
         style: Theme.of(context).textTheme.headline5.merge(
               TextStyle(
-                fontSize: SizeConfig.safeBlockHorizontal * 6,
+                fontSize: _fontSize,
               ),
             ),
       ),
@@ -118,12 +136,18 @@ class _HeaderMovieDetailsState extends State<HeaderMovieDetails> {
   // Image Resolution (4K)
   // =====================================================================
   Widget _resolution() {
+    // Size (Responsive)
+    double _size = SizeConfig.safeBlockVertical * 2.4;
+    if (SizeConfig.orientation == Orientation.landscape) {
+      _size = SizeConfig.safeBlockVertical * 5.4;
+    }
+
     return ImageIcon(
       AssetImage(
         "assets/images/4k-fullhd.png",
       ),
       color: Theme.of(context).unselectedWidgetColor,
-       size: SizeConfig.safeBlockVertical * 2.4,
+      size: _size,
     );
   }
 }

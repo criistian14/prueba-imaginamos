@@ -36,11 +36,10 @@ class _MovieCardState extends State<MovieCard> {
     return GestureDetector(
       onTap: _openMovieDetails,
       child: Container(
-        width: SizeConfig.safeBlockHorizontal * 35,
+        width: _widthContainer(),
         margin: EdgeInsets.only(
           right: SizeConfig.safeBlockHorizontal * 5,
         ),
-        // color: Colors.red,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -60,9 +59,17 @@ class _MovieCardState extends State<MovieCard> {
   // Thumbnail Movie
   // ====================================================================
   Widget _thumbnailMovie() {
+    // Size Thumbnail (Responsive)
+    double _widthThumbnail = SizeConfig.safeBlockHorizontal * 35;
+    double _heightThumbnail = SizeConfig.safeBlockVertical * 21;
+    if (SizeConfig.orientation == Orientation.landscape) {
+      _widthThumbnail = SizeConfig.safeBlockHorizontal * 23;
+      _heightThumbnail = SizeConfig.safeBlockVertical * 45;
+    }
+
     return Container(
-      width: SizeConfig.safeBlockHorizontal * 35,
-      height: SizeConfig.safeBlockVertical * 21,
+      width: _widthThumbnail,
+      height: _heightThumbnail,
       child: ClipRRect(
         borderRadius: BorderRadius.circular(15),
         child: FadeInImage.assetNetwork(
@@ -78,9 +85,20 @@ class _MovieCardState extends State<MovieCard> {
   // Title Movie
   // ====================================================================
   Widget _titleMovie() {
+    // Size Thumbnail (Responsive)
+    double _widthContainer = SizeConfig.safeBlockHorizontal * 35;
+    double _heightContainer = SizeConfig.safeBlockVertical * 2;
+    // Font Size (Responsive)
+    double _fontSizeTitle = SizeConfig.safeBlockHorizontal * 3;
+    if (SizeConfig.orientation == Orientation.landscape) {
+      _widthContainer = SizeConfig.safeBlockHorizontal * 23;
+      _heightContainer = SizeConfig.safeBlockVertical * 5;
+      _fontSizeTitle = SizeConfig.safeBlockHorizontal * 2;
+    }
+
     return Container(
-      width: SizeConfig.safeBlockHorizontal * 35,
-      height: SizeConfig.safeBlockVertical * 2,
+      width: _widthContainer,
+      height: _heightContainer,
       margin: EdgeInsets.only(
         top: SizeConfig.safeBlockVertical * 1.5,
       ),
@@ -89,7 +107,7 @@ class _MovieCardState extends State<MovieCard> {
         overflow: TextOverflow.ellipsis,
         style: Theme.of(context).textTheme.subtitle1.merge(
               TextStyle(
-                fontSize: SizeConfig.safeBlockHorizontal * 3,
+                fontSize: _fontSizeTitle,
               ),
             ),
       ),
@@ -120,5 +138,16 @@ class _MovieCardState extends State<MovieCard> {
         },
       ),
     );
+  }
+
+  // ====================================================================
+  // Width Container (Responsive)
+  // ====================================================================
+  double _widthContainer() {
+    if (SizeConfig.orientation == Orientation.landscape) {
+      return SizeConfig.safeBlockHorizontal * 23;
+    }
+
+    return SizeConfig.safeBlockHorizontal * 35;
   }
 }

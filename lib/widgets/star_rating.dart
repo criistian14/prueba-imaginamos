@@ -24,14 +24,14 @@ class _StarRatingState extends State<StarRating> {
     SizeConfig().init(context);
 
     return Container(
-      width: SizeConfig.safeBlockHorizontal * 20,
-      height: SizeConfig.safeBlockVertical * 2,
+      width: _sizeContainer().width,
+      height: _sizeContainer().height,
       child: ListView.builder(
         scrollDirection: Axis.horizontal,
         itemBuilder: (context, index) {
           return Icon(
             Icons.star,
-            size: SizeConfig.safeBlockHorizontal * 4,
+            size: _sizeIcon(),
             color: _validateColor(index),
           );
         },
@@ -49,5 +49,33 @@ class _StarRatingState extends State<StarRating> {
     }
 
     return Colors.yellow[100];
+  }
+
+  // ====================================================================
+  // Size Container (Responsive)
+  // ====================================================================
+  Size _sizeContainer() {
+    if (SizeConfig.orientation == Orientation.landscape) {
+      return Size(
+        SizeConfig.safeBlockHorizontal * 11,
+        SizeConfig.safeBlockVertical * 6,
+      );
+    }
+
+    return Size(
+      SizeConfig.safeBlockHorizontal * 20,
+      SizeConfig.safeBlockVertical * 2,
+    );
+  }
+
+  // ====================================================================
+  // Size Icon Star (Responsive)
+  // ====================================================================
+  double _sizeIcon() {
+    if (SizeConfig.orientation == Orientation.landscape) {
+      return SizeConfig.safeBlockHorizontal * 2.2;
+    }
+
+    return SizeConfig.safeBlockHorizontal * 4;
   }
 }

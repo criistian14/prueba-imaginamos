@@ -37,10 +37,21 @@ class _OverviewMovieDetailsState extends State<OverviewMovieDetails> {
         widget.movie.overview,
         style: Theme.of(context).textTheme.bodyText1.merge(
               TextStyle(
-                fontSize: SizeConfig.safeBlockHorizontal * 3.2,
+                fontSize: _fontSize(),
               ),
             ),
       ),
     );
+  }
+
+  // ====================================================================
+  // Font Size (Responsive)
+  // ====================================================================
+  double _fontSize() {
+     if (SizeConfig.orientation == Orientation.landscape) {
+      return SizeConfig.safeBlockHorizontal * 2.2;
+    }
+
+   return SizeConfig.safeBlockHorizontal * 3.2;
   }
 }

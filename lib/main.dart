@@ -37,7 +37,7 @@ class _MyAppState extends State<MyApp> {
       primaryColor: HexToColor(AppConfig.primaryColor),
       accentColor: Colors.black,
       scaffoldBackgroundColor: Colors.white,
-      backgroundColor:  Colors.white,
+      backgroundColor: Colors.white,
       unselectedWidgetColor: Colors.black38,
 
       // Fonts
@@ -92,7 +92,7 @@ class _MyAppState extends State<MyApp> {
       primaryColor: HexToColor(AppConfig.primaryColor),
       accentColor: Colors.white,
       scaffoldBackgroundColor: HexToColor(AppConfig.backgroundDarkColor),
-      backgroundColor:  HexToColor(AppConfig.backgroundDarkColor),      
+      backgroundColor: HexToColor(AppConfig.backgroundDarkColor),
       unselectedWidgetColor: Colors.white30,
 
       // Fonts
@@ -143,7 +143,7 @@ class _MyAppState extends State<MyApp> {
       stream: themeBloc.darkThemeIsEnabled,
       builder: (context, darkThemeIsEnabled) {
         return MaterialApp(
-          title: 'Prueba Imaginamos',
+          title: 'Christian - Imaginamos',
           debugShowCheckedModeBanner: false,
           theme: darkThemeIsEnabled.data ? _darkTheme() : _lightTheme(),
           home: HomeScreen(),

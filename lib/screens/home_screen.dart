@@ -22,10 +22,20 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   HomeBloc _homeBloc = HomeBloc();
+  GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   void initState() {
     super.initState();
+
+    // Listen Errors
+    _homeBloc.errorMovieList.listen((error) {
+      SnackBar _snackBar = SnackBar(
+        content: Text(error),
+      );
+
+      _scaffoldKey.currentState.showSnackBar(_snackBar);
+    });
 
     _homeBloc.initState();
   }
@@ -44,6 +54,7 @@ class _HomeScreenState extends State<HomeScreen> {
     SizeConfig().init(context);
 
     return Scaffold(
+      key: _scaffoldKey,
       body: GestureDetector(
         onTap: () => FocusScope.of(context).requestFocus(FocusNode()),
         child: SafeArea(

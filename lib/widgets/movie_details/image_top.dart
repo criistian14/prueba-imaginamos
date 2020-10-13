@@ -29,7 +29,7 @@ class _ImageTopMovieDetailsState extends State<ImageTopMovieDetails> {
 
     return Container(
       width: SizeConfig.safeBlockHorizontal * 100,
-      height: SizeConfig.safeBlockVertical * 45,
+      height: _heightContainer(),
       child: Stack(
         fit: StackFit.expand,
         children: [
@@ -47,6 +47,12 @@ class _ImageTopMovieDetailsState extends State<ImageTopMovieDetails> {
   // Banner Image
   // =====================================================================
   Widget _banner() {
+    // Fit Image Banner (Responsive)
+    BoxFit _fitImageBanner = BoxFit.fitHeight;
+    if (SizeConfig.orientation == Orientation.landscape) {
+      _fitImageBanner = BoxFit.fitWidth;
+    }
+
     return ClipRRect(
       borderRadius: BorderRadius.only(
         bottomLeft: Radius.circular(10),
@@ -55,7 +61,7 @@ class _ImageTopMovieDetailsState extends State<ImageTopMovieDetails> {
       child: FadeInImage.assetNetwork(
         placeholder: "assets/images/loading.gif",
         image: "${AppConfig.urlImage}/original${widget.movie.backdropPath}",
-        fit: BoxFit.fitHeight,
+        fit: _fitImageBanner,
       ),
     );
   }
@@ -64,32 +70,52 @@ class _ImageTopMovieDetailsState extends State<ImageTopMovieDetails> {
   // Actions
   // =====================================================================
   Widget _actions() {
+    // Size Icon (Responsive)
+    double _sizeIcon = SizeConfig.safeBlockHorizontal * 6;
+    if (SizeConfig.orientation == Orientation.landscape) {
+      _sizeIcon = SizeConfig.safeBlockHorizontal * 4;
+    }
+
     return Positioned(
       left: 0,
       right: 0,
-      top: SizeConfig.safeBlockVertical * 5,
+      top: MediaQuery.of(context).padding.top +
+          (SizeConfig.safeBlockVertical * 3),
       child: Container(
-        padding: EdgeInsets.symmetric(
-          horizontal: SizeConfig.safeBlockHorizontal * 6,
-        ),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             // Back
-            GestureDetector(
-              onTap: () => Navigator.of(context).pop(),
+            FlatButton(
+              onPressed: () => Navigator.of(context).pop(),
               child: Icon(
                 Icons.arrow_back,
+                size: _sizeIcon,
               ),
             ),
 
             // Like
-            Icon(
-              Icons.favorite_border,
+            FlatButton(
+              onPressed: () {},
+              child: Icon(
+                Icons.favorite_border,
+                size: _sizeIcon,
+              ),
             ),
           ],
         ),
       ),
     );
+  }
+
+  // ====================================================================
+  // Height Container (Responsive)
+  // ====================================================================
+  double _heightContainer() {
+    if (SizeConfig.orientation == Orientation.landscape) {
+      return SizeConfig.safeBlockVertical * 84;
+    }
+
+    return SizeConfig.safeBlockVertical * 45;
   }
 }

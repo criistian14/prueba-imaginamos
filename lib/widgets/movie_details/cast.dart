@@ -31,7 +31,7 @@ class _CastMovieDetailsState extends State<CastMovieDetails> {
 
     return Container(
       width: SizeConfig.safeBlockHorizontal * 100,
-      height: SizeConfig.safeBlockVertical * 15,
+      height: _heightContainer(),
       padding: EdgeInsets.symmetric(
         horizontal: SizeConfig.safeBlockHorizontal * 8,
       ),
@@ -56,8 +56,35 @@ class _CastMovieDetailsState extends State<CastMovieDetails> {
   // Person (Image and Name)
   // =====================================================================
   Widget _person(int index) {
+    // Width Main Container (Responsive)
+    double _withContainer = SizeConfig.safeBlockHorizontal * 16;
+    // Size Container Profile Picture (Responsive)
+    Size _sizeContainerProfile = Size(
+      SizeConfig.safeBlockHorizontal * 13,
+      SizeConfig.safeBlockHorizontal * 13,
+    );
+    // Size Container Name (Responsive)
+    Size _sizeContainerName = Size(
+      SizeConfig.safeBlockHorizontal * 16,
+      SizeConfig.safeBlockVertical * 5,
+    );
+    // Font Size Name (Responsive)
+    double _fontSizeName = SizeConfig.safeBlockHorizontal * 3.3;
+    if (SizeConfig.orientation == Orientation.landscape) {
+      _withContainer = SizeConfig.safeBlockHorizontal * 13;
+      _sizeContainerProfile = Size(
+        SizeConfig.safeBlockHorizontal * 7,
+        SizeConfig.safeBlockHorizontal * 7,
+      );
+      _sizeContainerName = Size(
+        SizeConfig.safeBlockHorizontal * 13,
+        SizeConfig.safeBlockVertical * 16,
+      );
+      _fontSizeName = SizeConfig.safeBlockHorizontal * 2;
+    }
+
     return Container(
-      width: SizeConfig.safeBlockHorizontal * 16,
+      width: _withContainer,
       margin: EdgeInsets.only(
         right: SizeConfig.safeBlockVertical * 4,
       ),
@@ -65,15 +92,15 @@ class _CastMovieDetailsState extends State<CastMovieDetails> {
         children: [
           // Profile Picture
           Container(
-            width: SizeConfig.safeBlockHorizontal * 13,
-            height: SizeConfig.safeBlockHorizontal * 13,
+            width: _sizeContainerProfile.width,
+            height: _sizeContainerProfile.height,
             child: _profilePicture(index),
           ),
 
           // Name
           Container(
-            width: SizeConfig.safeBlockHorizontal * 16,
-            height: SizeConfig.safeBlockVertical * 6,
+            width: _sizeContainerName.width,
+            height: _sizeContainerName.height,
             margin: EdgeInsets.only(
               top: SizeConfig.safeBlockVertical * 1.5,
             ),
@@ -82,7 +109,7 @@ class _CastMovieDetailsState extends State<CastMovieDetails> {
               textAlign: TextAlign.center,
               style: Theme.of(context).textTheme.subtitle2.merge(
                     TextStyle(
-                      fontSize: SizeConfig.safeBlockHorizontal * 3.3,
+                      fontSize: _fontSizeName,
                     ),
                   ),
             ),
@@ -122,5 +149,16 @@ class _CastMovieDetailsState extends State<CastMovieDetails> {
         "assets/images/lsb-loading.gif",
       ),
     );
+  }
+
+  // ====================================================================
+  // Height Container (Responsive)
+  // ====================================================================
+  double _heightContainer() {
+    if (SizeConfig.orientation == Orientation.landscape) {
+      return SizeConfig.safeBlockVertical * 36;
+    }
+
+    return SizeConfig.safeBlockVertical * 15;
   }
 }

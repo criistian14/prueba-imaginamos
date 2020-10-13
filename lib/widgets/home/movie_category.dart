@@ -37,13 +37,16 @@ class _MovieCategoryState extends State<MovieCategory> {
 
     return Stack(
       children: [
+        // Color Primary
         Container(
           height: SizeConfig.safeBlockVertical * 5,
           width: SizeConfig.safeBlockHorizontal * 100,
           color: Theme.of(context).primaryColor,
         ),
+
+        // Content List
         Container(
-          height: SizeConfig.safeBlockVertical * 35.8,
+          height: _heightContainer(),
           width: SizeConfig.safeBlockHorizontal * 100,
           margin: EdgeInsets.zero,
           padding: EdgeInsets.only(
@@ -72,6 +75,15 @@ class _MovieCategoryState extends State<MovieCategory> {
   // Title Category
   // ====================================================================
   Widget _titleCategory() {
+    // Font Size Title (Responsive)
+    double _fontSizeTitle = SizeConfig.safeBlockHorizontal * 3;
+    // Font Size Button "See all" (Responsive)
+    double _fontSizeBtn = SizeConfig.safeBlockHorizontal * 2.8;
+    if (SizeConfig.orientation == Orientation.landscape) {
+      _fontSizeTitle = SizeConfig.safeBlockHorizontal * 2;
+      _fontSizeBtn = SizeConfig.safeBlockHorizontal * 1.9;
+    }
+
     return Container(
       padding: EdgeInsets.only(
         right: SizeConfig.safeBlockHorizontal * 8,
@@ -83,7 +95,7 @@ class _MovieCategoryState extends State<MovieCategory> {
             widget.title.toUpperCase(),
             style: Theme.of(context).textTheme.headline5.merge(
                   TextStyle(
-                    fontSize: SizeConfig.safeBlockHorizontal * 3,
+                    fontSize: _fontSizeTitle,
                   ),
                 ),
           ),
@@ -91,7 +103,7 @@ class _MovieCategoryState extends State<MovieCategory> {
             "See all",
             style: Theme.of(context).textTheme.subtitle2.merge(
                   TextStyle(
-                    fontSize: SizeConfig.safeBlockHorizontal * 2.8,
+                    fontSize: _fontSizeBtn,
                   ),
                 ),
           ),
@@ -131,7 +143,7 @@ class _MovieCategoryState extends State<MovieCategory> {
     return Expanded(
       child: ListView.builder(
         padding: EdgeInsets.only(
-          top: SizeConfig.safeBlockVertical * 3,
+          top: SizeConfig.safeBlockVertical * 2.4,
         ),
         scrollDirection: Axis.horizontal,
         itemBuilder: (context, index) {
@@ -161,9 +173,30 @@ class _MovieCategoryState extends State<MovieCategory> {
   // ====================================================================
   double _validatePaddingTop() {
     if (widget.isFirst) {
+      // Responsive
+      if (SizeConfig.orientation == Orientation.landscape) {
+        return SizeConfig.safeBlockVertical * 8;
+      }
+
       return SizeConfig.safeBlockVertical * 4;
     }
 
+    // Responsive
+    if (SizeConfig.orientation == Orientation.landscape) {
+      return SizeConfig.safeBlockVertical * 6;
+    }
+
     return SizeConfig.safeBlockVertical * 3;
+  }
+
+  // ====================================================================
+  // Height Container (Responsive)
+  // ====================================================================
+  double _heightContainer() {
+    if (SizeConfig.orientation == Orientation.landscape) {
+      return SizeConfig.safeBlockVertical * 75;
+    }
+
+    return SizeConfig.safeBlockVertical * 35.8;
   }
 }

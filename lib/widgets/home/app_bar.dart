@@ -27,12 +27,23 @@ class _AppBarHomeState extends State<AppBarHome> {
       snap: false,
       elevation: 0,
       stretch: false,
-      expandedHeight: SizeConfig.safeBlockVertical * 25,
+      expandedHeight: _heightAppBar(),
       backgroundColor: Theme.of(context).backgroundColor,
       toolbarHeight: 0,
       flexibleSpace: FlexibleSpaceBar(
         background: TopCardHome(),
       ),
     );
+  }
+
+  // ====================================================================
+  // Height App Bar Container (Responsive)
+  // ====================================================================
+  double _heightAppBar() {
+    if (SizeConfig.orientation == Orientation.landscape) {
+      return SizeConfig.safeBlockVertical * 45;
+    }
+
+    return SizeConfig.safeBlockVertical * 25;
   }
 }

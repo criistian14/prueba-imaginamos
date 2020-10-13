@@ -50,13 +50,22 @@ class _TopCardHomeState extends State<TopCardHome> {
   // Title Home
   // ====================================================================
   Widget _titleHome() {
+    // Font Size Title (Responsive)
+    double _fontSize = SizeConfig.safeBlockHorizontal * 5.7;
+    // Height Titlte (Responsive)
+    double _heightSize = SizeConfig.safeBlockVertical * 0.19;
+    if (SizeConfig.orientation == Orientation.landscape) {
+      _fontSize = SizeConfig.safeBlockHorizontal * 3.9;
+      _heightSize = SizeConfig.safeBlockVertical * .3;
+    }
+
     return Container(
       child: Text(
         "Hello, what do you \nwant to watch ?",
         style: Theme.of(context).textTheme.headline1.merge(
               TextStyle(
-                fontSize: SizeConfig.safeBlockHorizontal * 5.7,
-                height: SizeConfig.safeBlockVertical * 0.19,
+                fontSize: _fontSize,
+                height: _heightSize,
               ),
             ),
       ),
@@ -67,8 +76,14 @@ class _TopCardHomeState extends State<TopCardHome> {
   // Search
   // ====================================================================
   Widget _search() {
+    // Height Container Search (Responsive)
+    double _heightContainerSearch = SizeConfig.safeBlockVertical * 4;
+    if (SizeConfig.orientation == Orientation.landscape) {
+      _heightContainerSearch = SizeConfig.safeBlockVertical * 9.4;
+    }
+
     return Container(
-      height: SizeConfig.safeBlockVertical * 4,
+      height: _heightContainerSearch,
       margin: EdgeInsets.only(
         top: SizeConfig.safeBlockVertical * 2,
       ),
@@ -86,12 +101,18 @@ class _TopCardHomeState extends State<TopCardHome> {
   // Switch Allow Dark Mode
   // ====================================================================
   Widget _switchDarkMode() {
+    // Height Container Icon Switch (Responsive)
+    double _heightContainerIcon = SizeConfig.safeBlockVertical * 3.4;
+    if (SizeConfig.orientation == Orientation.landscape) {
+      _heightContainerIcon = SizeConfig.safeBlockVertical * 9;
+    }
+
     return StreamBuilder<bool>(
       initialData: true,
       stream: themeBloc.darkThemeIsEnabled,
       builder: (context, snapshot) {
         return Container(
-          height: SizeConfig.safeBlockVertical * 3.4,
+          height: _heightContainerIcon,
           width: SizeConfig.safeBlockHorizontal * 100,
           child: Row(
             mainAxisAlignment: MainAxisAlignment.end,
@@ -121,17 +142,23 @@ class _TopCardHomeState extends State<TopCardHome> {
   // Icon Switch Dark Mode (iOS or Android)
   // ====================================================================
   Widget _iconSwitchDarkMode(bool darkMode) {
+    // Size Icon Switch (Responsive)
+    double _sizeIcon = SizeConfig.safeBlockVertical * 3.4;
+    if (SizeConfig.orientation == Orientation.landscape) {
+      _sizeIcon = SizeConfig.safeBlockVertical * 9;
+    }
+
     if (Platform.isIOS) {
       return Icon(
         darkMode ? CupertinoIcons.sun_max_fill : CupertinoIcons.moon_fill,
-        size: SizeConfig.safeBlockVertical * 3.4,
+        size: _sizeIcon,
         color: Colors.white,
       );
     }
 
     return Icon(
       darkMode ? Icons.wb_sunny : Icons.nightlight_round,
-      size: SizeConfig.safeBlockVertical * 3.4,
+      size: _sizeIcon,
       color: Colors.white,
     );
   }
