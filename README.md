@@ -1,16 +1,30 @@
-# prueba
+# Test Imaginamos
 
-A new Flutter project.
+Prueba para la empresa Imaginamos hecha en Flutter sin librerias. 
+Es una app simple que consulta endpoints de [TMDB](https://www.themoviedb.org/documentation/api) para mostrar un listado de peliculas, tambien cuenta con modo dark y es responsive.
 
-## Getting Started
 
-This project is a starting point for a Flutter application.
+# Preview
 
-A few resources to get you started if this is your first Flutter project:
+## Images
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+![Image 1](https://github.com/criistian14/prueba-imaginamos/blob/master/assets/preview/1.jpg)
+![Image 2](https://github.com/criistian14/prueba-imaginamos/blob/master/assets/preview/2.jpg)
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+
+## Videos
+
+![Video 1](https://github.com/criistian14/prueba-imaginamos/blob/master/assets/preview/1.mp4)
+![Video 2](https://github.com/criistian14/prueba-imaginamos/blob/master/assets/preview/2.mp4)
+
+
+# APK
+
+
+El apk es completamente funcional y se puede descargar de [aqui](https://github.com/criistian14/test-quick/raw/dev/apk/testquick_christian.apk) (esta en la carpeta apk de este repositorio)
+
+O si se desea se puede generar el apk, despues de descargar el repositorio localmente, con el siguiente comando:
+
+```cmd
+flutter build apk
+```
