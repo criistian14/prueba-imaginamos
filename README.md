@@ -8,14 +8,7 @@ Es una app simple que consulta endpoints de [TMDB](https://www.themoviedb.org/do
 
 ## Images
 
-![Image 1](https://github.com/criistian14/prueba-imaginamos/blob/master/assets/preview/1.jpg)
-![Image 2](https://github.com/criistian14/prueba-imaginamos/blob/master/assets/preview/2.jpg)
-
-
-## Videos
-
-![Video 1](https://github.com/criistian14/prueba-imaginamos/blob/master/assets/preview/1.mp4)
-![Video 2](https://github.com/criistian14/prueba-imaginamos/blob/master/assets/preview/2.mp4)
+![Image 1](https://github.com/criistian14/prueba-imaginamos/blob/master/assets/preview/1.jpg) ![Image 2](https://github.com/criistian14/prueba-imaginamos/blob/master/assets/preview/2.jpg)
 
 
 # APK
